@@ -17,6 +17,9 @@ body {
     ;
 }
 
+header {
+        font-size: 20px;
+}
 #item1 {
     grid-area: bottom;
     width: 99.5%;
