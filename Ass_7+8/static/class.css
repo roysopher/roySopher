@@ -1,0 +1,82 @@
+body {
+    background-color: darkgray;
+    font-family: monospace;
+    border: black;
+    border-radius: 10px;
+    line-break: anywhere;
+}
+
+#GridContainer {
+    display: grid; /* change display property (from black level to grid)*/
+    grid-template-areas:
+    'spotify spotify spotify sign_up'
+    'spotify spotify spotify sign_up'
+    'spotify spotify spotify sign_up'
+    'spotify spotify spotify sign_up'
+    'bottom bottom bottom sign_up'
+    ;
+}
+
+#item1 {
+    grid-area: bottom;
+    width: 99.5%;
+    background-color:white;
+    height: 23vh;
+    border: black;
+    border-radius: 3px;
+}
+
+#item2 {
+    grid-area: spotify;
+    font-size: 40px;
+    text-align: center;
+    width: 99.5%;
+    background-color:lightgrey;
+    height: 66vh;
+    border: black;
+    border-radius: 3px;
+}
+
+#item3 {
+    grid-area: sign_up;
+    width: 100%;
+    background-color:lightblue;
+    height: 90vh;
+    border: black;
+    border-radius: 3px;
+}
+
+.center{
+    text-align: center;
+}
+
+button{
+    height: 100%;
+    font-size: 20px;
+    background-color: lightskyblue;
+    animation-name: blink;
+    animation-duration: 5s;
+    animation-iteration-count: 10;
+    margin-bottom: 10px;
+}
+
+#spotify{
+    font-size: 20px;
+    text-align: center;
+}
+#youtube{
+    font-size: 20px;
+    text-align: center;
+}
+
+@media only screen and (max-width:600px) {
+    body {
+        background-color: blue;
+    }
+}
+
+@keyframes blink{
+    0% {background-color: lightgoldenrodyellow; border-radius: 5%;}
+
+
+}

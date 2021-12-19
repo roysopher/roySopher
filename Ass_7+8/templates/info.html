@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block tohen %}
+    {{ super() }}
+
+    <div id="GridContainer">
+        <div id="item1" class="center">
+            <button id="Button" onclick="MyName()"> Click Here </button>
+        </div>
+        <div id="item2">
+            <h3> Spotify Page</h3>
+            <a href="https://open.spotify.com/artist/6yK5KmuKZIqFC9HAdxEGrd?si=kmOwkQQ1Qi6bVu_ny3r_JA" id="spotify"> Spotify</a>
+            <h4> YouTube Page</h4>
+            <a href="https://www.youtube.com/channel/UCLXVL46PjjKWt3K-d0sEr0g" id="youtube"> YouTube</a>
+        </div>
+        <div id="item3" class="center">
+            <form id="form" action="">
+                <h1>Sign in</h1>
+                <label for="FName">Full Name</label><br>
+                <input class="input" type="text" name="FName" id="" required><br><br>
+                <label for="Email">Email</label><br>
+                <input class="input" type="text" name="Email" id="" required><br><br>
+                <label for="phone" class="label"> number </label><br>
+                <input class="input" name="phone" input type="tel" id="phone" ><br>
+                <label for="pwd">Password</label><br>
+                <input class="input" type="password" id="pwd" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="8 at least" required><br><br>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}
