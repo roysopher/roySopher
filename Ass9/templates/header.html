@@ -1,0 +1,10 @@
+<header>
+    <a href="/"> Home </a> | <a href="/info"> Info </a> | <a href="/songs"> Songs </a>
+
+    {% if session.username %}
+       | <a href="logout"> Log out</a>
+    {% else %}
+        |   <a href="/assignment9"> Assignment9 </a>
+    {% endif %}
+    <h1> hey {{ session.username | default ('guest!', true)}}  </h1>
+</header>
