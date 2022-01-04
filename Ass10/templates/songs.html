@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%  block title %} songs {% endblock %}</title>
+    <link rel="stylesheet" href="/static/class.css">
+    <script src="/static/class.js"></script>
+</head>
+<body>
+    {% include 'Header.html' %}
+
+    {% block tohen %}
+        <h7> All Songs </h7>
+        <ul>
+        <li>{{ songs[0] }}</li>
+        <li>{{ songs[1] }}</li>
+        <li>{{ songs[2] }}</li>
+        <li>{{ songs[3] }}</li>
+
+    </ul>
+    {% endblock %}
+
+    {% include 'Footer.html' %}
+</body>
+</html>

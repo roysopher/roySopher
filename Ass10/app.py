@@ -6,11 +6,12 @@ app.secret_key = '123'
 app.config.from_pyfile('settings.py')
 
 users = {'user1': {'name': 'Li', 'last name': 'Ron', 'Email': 'liron@gmail.com'},
-         'user2': {'name': 'Avi', 'last name': 'Ron', 'Email': 'aviron@gmail.com'},
+         'user2': {'name': 'Avi', 'last name': 'Hen', 'Ron': 'aviron@gmail.com'},
          'user3': {'name': 'Ha', 'last name': 'Ron', 'Email': 'haron@gmail.com'},
          'user4': {'name': 'Beri', 'last name': 'Tsakala', 'Email': 'beritsakala@gmail.com'},
          'user5': {'name': 'Noor', 'last name': 'It', 'Email': 'noorit@gmail.com'},
          }
+
 
 
 @app.route('/')
@@ -26,12 +27,14 @@ def ass7():  # put application's code here
 @app.route('/assignment9', methods=['GET', 'POST'])
 def login_func():  # put application's code here
     if request.method == 'GET':
-        if 'search_user' in request.args:
-            search_user = request.args['search_user']
-            return render_template('assignment9.html', username=session['username']
-                                   , search_user=search_user
-                                   , users=users)
-        return render_template('assignment9.html', username=session['username'])
+        if session['username']:
+            if 'search_user' in request.args:
+                search_user = request.args['search_user']
+                return render_template('assignment9.html', username=session['username']
+                                       , search_user=search_user
+                                       , users=users)
+            return render_template('assignment9.html', users=users, username=session['username'])
+        return render_template('assignment9.html', users=users)
     if request.method == 'POST':
         username = request.form['username']
         Password = request.form['password']
@@ -70,6 +73,10 @@ def about_func():  # put application's code here
                            hobies=('Football', 'Music', 'Chess'))
 
 
+from pages.assignment10.assignment10 import assignment10
+app.register_blueprint(assignment10)
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
