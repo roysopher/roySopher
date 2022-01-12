@@ -59,7 +59,7 @@ def logout_func():  # put application's code here
 @app.route('/songs', methods=['GET', 'POST'])
 def songs_func():  # put application's code here
     return render_template('songs.html',
-                           songs=('Pave it', 'Pointed', 'Deceptive', 'Eruptive Silence'))
+                           songs=('Pave it', 'Pointed', 'Deceptive', 'Eruptive Silence', 'Dance Monkey remix'))
 
 
 @app.route('/info', methods=['GET', 'POST'])
