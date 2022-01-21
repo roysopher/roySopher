@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, session, request
+from flask import Flask, redirect, url_for, session, request, jsonify
 from flask import render_template
 from interactDB import interact_db
 import json
@@ -14,7 +14,6 @@ users = {'user1': {'name': 'Li', 'last name': 'Ron', 'Email': 'liron@gmail.com'}
          'user4': {'name': 'Beri', 'last name': 'Tsakala', 'Email': 'beritsakala@gmail.com'},
          'user5': {'name': 'Noor', 'last name': 'It', 'Email': 'noorit@gmail.com'},
          }
-
 
 
 @app.route('/')
@@ -75,13 +74,16 @@ def about_func():  # put application's code here
                            degreas=['BSc', 'MSc'],
                            hobies=('Football', 'Music', 'Chess'))
 
+
 @app.route('/assignment11')
 def assignment11_func():  # put application's code here
     return render_template('assignment11.html', non="non")
 
+
 def get_users(index):
     res = requests.get(f'https://reqres.in/api/users/{index}')
     return res.json()
+
 
 @app.route('/assignment11/users')
 def json_func():  # put application's code here
@@ -97,7 +99,8 @@ def json_func():  # put application's code here
         }
     return render_template('assignment11.html', answer=dictionary, non="non")
 
-@app.route('/assignment11/outer_source',  methods=['post'])
+
+@app.route('/assignment11/outer_source', methods=['post'])
 def outer_source_func():
     if "frontend" in request.form:
         num = int(request.form['frontend'])
@@ -110,10 +113,30 @@ def outer_source_func():
         return render_template('assignment11.html')
 
 
+@app.route('/assignment12/restapi_users', defaults={'id': 1})
+
+@app.route('/assignment12/restapi_users/<int:id>')
+def get_users_func(id):
+    if id == None:
+        return 'select * from myDB.users where id = 123455555;'
+    query = 'select * from myDB.users where id = %s;' % id
+    users = interact_db(query=query, query_type='fetch')
+    if len(users) == 0:
+        return_dict = {
+            'Message': 'cant find user'
+        }
+    else:
+        return_dict = {
+            'id': users[0].id,
+            'name': users[0].name,
+            'email': users[0].email,
+        }
+    return jsonify(return_dict)
+
+
 from pages.assignment10.assignment10 import assignment10
+
 app.register_blueprint(assignment10)
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
